@@ -39,7 +39,7 @@ class Cupcake (db.Model):
         db.Integer,
         nullable=False,
     )
-
+    # TODO: save to global
     image = db.Column(
         db.Text,
         default='https://tinyurl.com/demo-cupcake',

@@ -1,13 +1,8 @@
 """Flask app for Cupcakes"""
 import os
 from flask import Flask, render_template, request, jsonify
-
 from flask_debugtoolbar import DebugToolbarExtension
-
-
-
 from models import connect_db, db, Cupcake
-
 
 app = Flask(__name__)
 
@@ -28,11 +23,14 @@ toolbar = DebugToolbarExtension(app)
 
 @app.get('/')
 def show_homepage():
+    """Shows homepage"""
 
     return render_template('base.html')
 
 @app.get('/api/cupcakes')
 def show_all_cupcakes():
+    """Shows all cupcakes returns json as
+    {'cupcakes': {id, flavor, size, rating, image}} """
 
     cupcakes = Cupcake.query.all()
     serialized = [c.serialize() for c in cupcakes]
@@ -41,6 +39,8 @@ def show_all_cupcakes():
 
 @app.get('/api/cupcakes/<int:id>')
 def show_cupcake(id):
+    """Shows details of specific cupcake by
+    return json as {'cupcakes': {id, flavor, size, rating, image}}"""
 
     cupcake = Cupcake.query.get_or_404(id)
     serialized = cupcake.serialize()
@@ -49,6 +49,8 @@ def show_cupcake(id):
 
 @app.post('/api/cupcakes')
 def create_cupcake():
+    """creates cupcake from a request,
+    returns json as {'cupcake': {id, flavor, size, rating, image}}"""
 
     flavor = request.json['flavor']
     size = request.json['size']
