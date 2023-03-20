@@ -3,6 +3,7 @@
 from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
+DEFAULT_IMAGE_URL = 'https://tinyurl.com/demo-cupcake'
 
 def connect_db(app):
     """Connect this database to provided Flask app.
@@ -42,7 +43,7 @@ class Cupcake (db.Model):
     # TODO: save to global
     image = db.Column(
         db.Text,
-        default='https://tinyurl.com/demo-cupcake',
+        default=DEFAULT_IMAGE_URL,
         nullable=False
     )
 
