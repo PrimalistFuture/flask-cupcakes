@@ -40,7 +40,7 @@ class Cupcake (db.Model):
         db.Integer,
         nullable=False,
     )
-    # TODO: save to global
+
     image = db.Column(
         db.Text,
         default=DEFAULT_IMAGE_URL,

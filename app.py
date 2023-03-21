@@ -3,8 +3,10 @@ import os
 from flask import Flask, render_template, request, jsonify
 from flask_debugtoolbar import DebugToolbarExtension
 from models import connect_db, db, Cupcake
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 app.config['SECRET_KEY'] = "secret"
 
